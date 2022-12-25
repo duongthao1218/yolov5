@@ -10,6 +10,14 @@
 3. [Train](#3-train)
 4. [Inference](#4-inference)
 
+Firstly, clone this repository and install `requirements.txt` in a Python>=3.7.0 environment, including PyTorch>=1.7
+
+```
+git clone https://github.com/duongthao1218/yolov5.git
+cd yolov5
+pip3 install -r requirements.txt  # install
+```
+
 ## **1. Create Dataset**
 
 ### 1.1 Collect Images
@@ -39,7 +47,7 @@ Open **labelImg** tool
 ```
 labelImg
 ```
-![labelImg](/docs/imgs/custom_dataset.png)
+<img src="./docs/imgs/custom_dataset.png" width=100% />
 
 - Step 1: Open image folder.
 - Step 2: Choose annotation folder.
@@ -75,7 +83,9 @@ Example:
 
 The label file corresponding to the above image contains 3 cars (class 0) 
 
-![Label file](/docs/imgs/label.png)
+<p align="center">
+<img src="./docs/imgs/label.png" width=80% />
+</p> 
 
 ### 1.3 Create Config File
 

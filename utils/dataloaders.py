@@ -975,16 +975,16 @@ def autosplit(path=DATASETS_DIR / 'coco128/images', weights=(0.9, 0.1, 0.0), ann
     random.seed(0)  # for reproducibility
     indices = random.choices([0, 1, 2], weights=weights, k=n)  # assign each image to a split
 
-    txt = ['autosplit_train.txt', 'autosplit_val.txt', 'autosplit_test.txt']  # 3 txt files
+    txt = ['train.txt', 'val.txt', 'test.txt']  # 3 txt files
     for x in txt:
-        if (path.parent / x).exists():
-            (path.parent / x).unlink()  # remove existing
+        if (path / x).exists():
+            (path / x).unlink()  # remove existing
 
     print(f'Autosplitting images from {path}' + ', using *.txt labeled images only' * annotated_only)
     for i, img in tqdm(zip(indices, files), total=n):
         if not annotated_only or Path(img2label_paths([str(img)])[0]).exists():  # check label
-            with open(path.parent / txt[i], 'a') as f:
-                f.write(f'./{img.relative_to(path.parent).as_posix()}' + '\n')  # add image to txt file
+            with open(path / txt[i], 'a') as f:
+                f.write(f'./{img.relative_to(path).as_posix()}' + '\n')  # add image to txt file
 
 
 def verify_image_label(args):

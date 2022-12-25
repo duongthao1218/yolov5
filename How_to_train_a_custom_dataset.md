@@ -24,6 +24,9 @@ pip3 install -r requirements.txt  # install
 
 - Capture frames from video
 
+- `--path_vid`: path to video input
+- `--path_imgs`: path to image folder output
+
 ```
 python3 capture_vid.py --path_vid ./videos/*.mp4 --path_imgs ./dataset/cars
 ```
@@ -49,8 +52,16 @@ labelImg
 ```
 <img src="./docs/imgs/custom_dataset.png" width=100% />
 
-- Step 1: Open image folder.
-- Step 2: Choose annotation folder.
+- Step 1: Open image folder. (Example: `datasets/images/`)
+- Step 2: Choose annotation folder. (Example: `datasets/labels/`)
+
+Notes: Images and labels should be obatianed in folders like below:
+```
+├── datasets
+│   ├── cars ├── images ├── *.jpg
+|   |        └── labels ├── *.txt
+```
+
 - Step 3: Choose label file format as YOLO.
 - Step 4: Draw a bounding box and annotate label. 
 - Step 5: Save annotation.
@@ -89,15 +100,17 @@ The label file corresponding to the above image contains 3 cars (class 0)
 
 ### 1.3 Create Config File
 
-Set up files and directory structure: to train the YOLOv5 model, we need to add a .yaml file to describe the parameters of our dataset.
+Set up files and directory structure: to train the YOLOv5 model, we need to add a `*.yaml` file to describe the parameters of our dataset.
 
-- Step 1: Split your dataset: we choose how to disperse our data (for example, keep 80% data in the training set and 20% in the validation set).
+- Step 1: Split your dataset by choosing how to disperse our data (for example, keep 80% data in the training set and 20% in the validation set).
 
 ```
 python3 split_dataset.py --path ./datasets/cars
 ```
 
-Directory & file structures
+`--path`: path to folder obtaining images
+
+Directory & files structure will like below:
 
 ```
 ├── datasets
@@ -110,7 +123,7 @@ Directory & file structures
 │   └── other datasets
 ```
 
-- Step 2: Setup the config file
+- Step 2: Setup the config file by editing `./data/custom.yaml`
 
 The *.txt file specifications are:
 - `path` is path to training and validation data.
@@ -169,12 +182,12 @@ python3 train.py --img 640 --batch 4 --epochs 100 --data data/custom.yaml --weig
 ```
 
 Describe some parse arguments:
-- img: define input image size
-- batch: determine batch size
-- epochs: define the number of training epochs.
-- data: set the path to YAML file
-- cfs: specify model configuration
-- weights: specify a custom path to weights (pretrained model)
+- `--img`: define input image size
+- `--batch`: determine batch size
+- `--epochs`: define the number of training epochs.
+- `--data`: set the path to YAML file
+- `--cfs`: specify model configuration
+- `--weights`: specify a custom path to weights (pretrained model)
 
 Notes: Training with GPU by adding parse argument  `--devide 0`
 
@@ -187,10 +200,10 @@ python3 detect.py --source datasets/cars/images/0.jpg --weights runs/train/exp/w
 ```
 
 Describe some parse arguments:
-- source: input
-- weights: path to trained model
-- data: set the path to YAML file
-- conf-thres: confidence threshold
+- `--source`: input
+- `--weights`: path to trained model
+- `--data`: set the path to YAML file
+- `--conf-thres`: confidence threshold
 
 ```
 --source    0                               # webcam

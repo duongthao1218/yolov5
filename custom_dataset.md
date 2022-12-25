@@ -186,7 +186,7 @@ All inferencing results are saved to `runs/detect`
 
 Example:
 
-![Result](runs/detect/exp/test.jpg)
+![Result](docs/imgs/test.jpg)
 
 
 **REFERENCES**

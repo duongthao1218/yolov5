@@ -17,7 +17,7 @@
 - Capture frames from video
 
 ```
-python3 capture_vid.py --path ./videos/*.mp4
+python3 capture_vid.py --path_vid ./videos/*.mp4 --path_imgs ./dataset/cars
 ```
 
 ### 1.2 Create Labels

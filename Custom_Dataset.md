@@ -158,16 +158,29 @@ Select a pretrained model to start training from. Read **Pretrained Checkpoints 
 python3 train.py --img 640 --batch 4 --epochs 100 --data data/custom.yaml --weights weights/yolov5s.pt
 ```
 
+Describe some parse arguments:
+- img: define input image size
+- batch: determine batch size
+- epochs: define the number of training epochs.
+- data: set the path to YAML file
+- cfs: specify model configuration
+- weights: specify a custom path to weights (pretrained model)
+
 Notes: Training with GPU by adding parse argument  `--devide 0`
 
-All training results are saved to runs/train/ with incrementing run directories, i.e. `runs/train/exp2, runs/train/exp3 etc`.  Move model `best.pt` in `runs/train/exp3/weights` to `weights` folder 
+All training results are saved to runs/train/ with incrementing run directories, i.e. `runs/train/exp, runs/train/exp1 etc`. 
 
 ## **4. Inference** 
 
 ```
-python3 detect.py --source datasets/cars/images/0.jpg --weights weights/best.pt --data data/custom.yaml 
+python3 detect.py --source datasets/cars/images/0.jpg --weights runs/train/exp/weights/best.pt --data data/custom.yaml --conf-thres 0.45
 ```
-Notes:
+
+Describe some parse arguments:
+- source: input
+- weights: path to trained model
+- data: set the path to YAML file
+- conf-thres: confidence threshold
 
 ```
 --source    0                               # webcam
